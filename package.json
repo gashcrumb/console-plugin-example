@@ -1,8 +1,8 @@
 {
-  "name": "console-plugin-template",
+  "name": "console-plugin-example",
   "version": "0.0.1",
   "private": true,
-  "repository": "git@github.com:spadgett/console-plugin-template.git",
+  "repository": "git@github.com:gashcrumb/console-plugin-example.git",
   "license": "Apache-2.0",
   "scripts": {
     "clean": "rm -rf dist",
@@ -60,12 +60,12 @@
     "webpack-dev-server": "^4.7.4"
   },
   "consolePlugin": {
-    "name": "console-plugin-template",
+    "name": "console-plugin-example",
     "version": "0.0.1",
-    "displayName": "OpenShift Console Plugin Template",
-    "description": "Template project for OpenShift console plugins. Edit package.json to change this message and the plugin name.",
+    "displayName": "Console Plugin Example",
+    "description": "",
     "exposedModules": {
-      "ExamplePage": "./components/ExamplePage"
+      "KameletInventoryItem": "./components/KameletInventoryItem"
     },
     "dependencies": {
       "@console/pluginAPI": "*"
