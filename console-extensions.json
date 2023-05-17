@@ -4,5 +4,11 @@
     "properties": {
       "component": { "$codeRef": "KameletInventoryItem" }
     }
+  },
+  {
+    "type": "console.cluster-overview/inventory-item",
+    "properties": {
+      "component": { "$codeRef": "KameletInventoryItem" }
+    }
   }
 ]

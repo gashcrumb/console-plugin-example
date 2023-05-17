@@ -6,7 +6,7 @@ import {
 } from '@openshift-console/dynamic-plugin-sdk';
 
 export type KameletInventoryItemProps = {
-  projectName: string;
+  projectName?: string;
 };
 
 export const KAMELET_GROUP_VERSION_KIND = {
@@ -21,8 +21,8 @@ export default function KameletInventoryItem({
   const watchRes = {
     kind: KAMELET_GROUP_VERSION_KIND,
     isList: true,
-    isNamespaced: true,
-    namespace: projectName,
+    isNamespaced: typeof projectName !== 'undefined',
+    ...(typeof projectName === 'string' && { namespace: projectName }),
   } as any;
   const [kamelets, loaded, error] =
     useK8sWatchResource<K8sResourceCommon[]>(watchRes);
