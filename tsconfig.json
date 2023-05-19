@@ -3,17 +3,21 @@
     "baseUrl": ".",
     "module": "esnext",
     "moduleResolution": "node",
-    "target": "es2020",
+    "target": "es2016",
     "jsx": "react",
     "allowJs": true,
     "esModuleInterop": true,
     "importHelpers": true,
     "declaration": false,
     "strict": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "lib": ["dom", "es7", "es2017.string"]
+
   },
-  "include": ["src"]
+  "include": ["./src"]
 }

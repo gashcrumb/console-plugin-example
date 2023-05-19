@@ -10,5 +10,47 @@
     "properties": {
       "component": { "$codeRef": "KameletInventoryItem" }
     }
+  },
+  {
+    "type": "console.tab/horizontalNav",
+    "properties": {
+      "model": {
+        "group": "camel.apache.org",
+        "version": "v1alpha1",
+        "kind": "Kamelet"
+      },
+      "page": {
+        "name": "Diagram",
+        "href": "/diagram"
+      },
+      "component": { "$codeRef": "KameletDiagram" }
+    }
+  },
+  {
+    "type": "console.yaml-template",
+    "properties": {
+      "model": {
+        "group": "camel.apache.org",
+        "version": "v1alpha1",
+        "kind": "Kamelet"
+      },
+      "name": "default",
+      "template": {
+        "$codeRef": "KameletTemplates.defaultYamlTemplate"
+      }
+    }
+  },
+  {
+    "type": "console.resource/create",
+    "properties": {
+      "model": {
+        "group": "camel.apache.org",
+        "version": "v1alpha1",
+        "kind": "Kamelet"
+      },
+      "component": {
+        "$codeRef": "KameletCreate"
+      }
+    }
   }
 ]

@@ -21,9 +21,10 @@
   },
   "devDependencies": {
     "@cypress/webpack-preprocessor": "^5.15.5",
-    "@openshift-console/dynamic-plugin-sdk": "0.0.12",
-    "@openshift-console/dynamic-plugin-sdk-webpack": "0.0.7",
+    "@openshift-console/dynamic-plugin-sdk": "^0.0.19",
+    "@openshift-console/dynamic-plugin-sdk-webpack": "^0.0.9",
     "@patternfly/react-core": "4.221.3",
+    "@types/js-yaml": "3.12.7",
     "@types/node": "^18.0.0",
     "@types/react": "^17.0.37",
     "@types/react-helmet": "^6.1.4",
@@ -55,7 +56,7 @@
     "ts-loader": "^9.3.1",
     "ts-node": "^10.8.1",
     "typescript": "^4.7.4",
-    "webpack": "^5.68.0",
+    "webpack": "^5.73.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4"
   },
@@ -65,10 +66,16 @@
     "displayName": "Console Plugin Example",
     "description": "",
     "exposedModules": {
-      "KameletInventoryItem": "./components/KameletInventoryItem"
+      "KameletInventoryItem": "./components/KameletInventoryItem",
+      "KameletCreate": "./components/KameletCreate",
+      "KameletDiagram": "./components/KameletDiagram",
+      "KameletTemplates": "./templates/KameletTemplates"
     },
     "dependencies": {
       "@console/pluginAPI": "*"
     }
+  },
+  "dependencies": {
+    "js-yaml": "^3.13.1"
   }
 }

@@ -4,20 +4,13 @@ import {
   ResourceLink,
   useK8sWatchResource,
 } from '@openshift-console/dynamic-plugin-sdk';
+import { KAMELET_GROUP_VERSION_KIND } from '../constants';
 
-export type KameletInventoryItemProps = {
+type KameletInventoryItemProps = {
   projectName?: string;
 };
 
-export const KAMELET_GROUP_VERSION_KIND = {
-  group: 'camel.apache.org',
-  version: 'v1alpha1',
-  kind: 'Kamelet',
-} as const;
-
-export default function KameletInventoryItem({
-  projectName,
-}: KameletInventoryItemProps) {
+const KameletInventoryItem = ({ projectName }: KameletInventoryItemProps) => {
   const watchRes = {
     kind: KAMELET_GROUP_VERSION_KIND,
     isList: true,
@@ -27,8 +20,8 @@ export default function KameletInventoryItem({
   const [kamelets, loaded, error] =
     useK8sWatchResource<K8sResourceCommon[]>(watchRes);
   if (loaded && error) {
-    console.log('Error watching kamelets: ', error);
-    return <></>;
+    console.log('Error watching katmelets: ', error);
+    throw error;
   }
   const title = `${kamelets.length} Kamelets`;
   return loaded ? (
@@ -42,4 +35,6 @@ export default function KameletInventoryItem({
   ) : (
     <></>
   );
-}
+};
+
+export default KameletInventoryItem;
