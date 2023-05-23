@@ -52,5 +52,31 @@
         "$codeRef": "KameletCreate"
       }
     }
+  },
+  {
+    "type": "console.page/resource/list",
+    "properties": {
+      "model": {
+        "group": "camel.apache.org",
+        "version": "v1alpha1",
+        "kind": "Kamelet"
+      },
+      "component": {
+        "$codeRef": "KameletList"
+      }
+      
+    }
+  },
+  {
+    "type": "console.navigation/href",
+    "properties": {
+      "id": "kamelets",
+      "perspective": "dev",
+      "section": "resources",
+      "insertBefore": "project",
+      "name": "Kamelets",
+      "href": "/camel.apache.org~v1alpha1~Kamelet",
+      "prefixNamespaced": true
+    }
   }
 ]

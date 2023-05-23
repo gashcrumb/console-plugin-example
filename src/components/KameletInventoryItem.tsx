@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FC } from 'react';
 import {
   K8sResourceCommon,
   ResourceLink,
@@ -10,7 +10,9 @@ type KameletInventoryItemProps = {
   projectName?: string;
 };
 
-const KameletInventoryItem = ({ projectName }: KameletInventoryItemProps) => {
+const KameletInventoryItem: FC<KameletInventoryItemProps> = ({
+  projectName,
+}) => {
   const watchRes = {
     kind: KAMELET_GROUP_VERSION_KIND,
     isList: true,

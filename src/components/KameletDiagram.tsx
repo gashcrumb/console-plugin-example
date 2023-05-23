@@ -4,18 +4,23 @@ import {
 } from '@openshift-console/dynamic-plugin-sdk';
 import { ExpandableSection } from '@patternfly/react-core';
 
-import * as React from 'react';
+import React, { FC } from 'react';
 import { useState } from 'react';
 import EditorWithStuff from '../POC/EditorWithStuff';
 
-const KameletDiagram = ({
+const KameletDiagram: FC<PageComponentProps<K8sResourceCommon>> = ({
   ...props
-}: PageComponentProps<K8sResourceCommon>) => {
-  const [isScreenshotExpanded, setIsScreenshotExpanded] = useState<boolean>(true);
+}) => {
+  const [isScreenshotExpanded, setIsScreenshotExpanded] =
+    useState<boolean>(true);
   console.log('Got props: ', props);
   return (
     <>
-      <ExpandableSection isExpanded={isScreenshotExpanded} onToggle={setIsScreenshotExpanded} toggleText={'Screenshot'}>
+      <ExpandableSection
+        isExpanded={isScreenshotExpanded}
+        onToggle={setIsScreenshotExpanded}
+        toggleText={'Screenshot'}
+      >
         <EditorWithStuff />
       </ExpandableSection>
       <ExpandableSection toggleText={'Page Properties'}>

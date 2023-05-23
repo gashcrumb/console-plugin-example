@@ -4,13 +4,13 @@ import {
   useK8sModel,
   k8sCreate,
 } from '@openshift-console/dynamic-plugin-sdk';
-import * as React from 'react';
+import React, { FC } from 'react';
 import { KAMELET_GROUP_VERSION_KIND, KAMELET_KIND } from '../constants';
 import { safeLoad } from 'js-yaml';
 import { ExpandableSection } from '@patternfly/react-core';
 import { EmptyEditor } from '../POC/EmptyEditor';
 
-const KameletCreate = ({ ...props }: CreateResourceComponentProps) => {
+const KameletCreate: FC<CreateResourceComponentProps> = ({ ...props }) => {
   const [model, inFlight] = useK8sModel(KAMELET_GROUP_VERSION_KIND);
   if (inFlight) {
     return <>Please wait...</>;
