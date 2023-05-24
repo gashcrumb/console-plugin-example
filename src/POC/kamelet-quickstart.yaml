@@ -1,0 +1,133 @@
+apiVersion: console.openshift.io/v1
+kind: ConsoleQuickStart
+metadata:
+  annotations:
+    capability.openshift.io/name: Console
+    include.release.openshift.io/ibm-cloud-managed: 'true'
+    include.release.openshift.io/self-managed-high-availability: 'true'
+    include.release.openshift.io/single-node-developer: 'true'
+  creationTimestamp: '2023-04-19T12:00:01Z'
+  generation: 1
+  name: kamelet-quickstart
+  ownerReferences:
+    - apiVersion: config.openshift.io/v1
+      kind: ClusterVersion
+      name: version
+      uid: 23eeb399-e068-4237-84a8-a238affe73fa
+  resourceVersion: '16093'
+  uid: 99b64dfc-9c91-41e6-9390-1f1ee80843e6
+spec:
+  conclusion: 'Your Spring application is deployed and ready. '
+  description: Create a Kamelet from scratch and deploy it onto OpenShift.
+  displayName: Get started with Kamelets
+  durationMinutes: 5
+  icon: data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTMwLjIxIDEzMC4wMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImEiIHgxPSIzMzMuNDgiIHgyPSI0NzciIHkxPSI3MDIuNiIgeTI9IjU2My43MyIgZ3JhZGllbnRUcmFuc2Zvcm09InRyYW5zbGF0ZSg5NC4wMzggMjc2LjA2KSBzY2FsZSguOTkyMDYpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agc3RvcC1jb2xvcj0iI0Y2OTkyMyIgb2Zmc2V0PSIwIi8+PHN0b3Agc3RvcC1jb2xvcj0iI0Y3OUEyMyIgb2Zmc2V0PSIuMTEiLz48c3RvcCBzdG9wLWNvbG9yPSIjRTk3ODI2IiBvZmZzZXQ9Ii45NDUiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iYiIgeDE9IjMzMy40OCIgeDI9IjQ3NyIgeTE9IjcwMi42IiB5Mj0iNTYzLjczIiBncmFkaWVudFRyYW5zZm9ybT0idHJhbnNsYXRlKDk0LjAzOCAyNzYuMDYpIHNjYWxlKC45OTIwNikiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBzdG9wLWNvbG9yPSIjRjY5OTIzIiBvZmZzZXQ9IjAiLz48c3RvcCBzdG9wLWNvbG9yPSIjRjc5QTIzIiBvZmZzZXQ9Ii4wOCIvPjxzdG9wIHN0b3AtY29sb3I9IiNFOTc4MjYiIG9mZnNldD0iLjQxOSIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJjIiB4MT0iNjMzLjU1IiB4Mj0iNTY2LjQ3IiB5MT0iODE0LjYiIHkyPSI5MDkuMTIiIGdyYWRpZW50VHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTg1LjQyMSA1Ni4yMzYpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agc3RvcC1jb2xvcj0iI2Y2ZTQyMyIgb2Zmc2V0PSIwIi8+PHN0b3Agc3RvcC1jb2xvcj0iI0Y3OUEyMyIgb2Zmc2V0PSIuNDEyIi8+PHN0b3Agc3RvcC1jb2xvcj0iI0U5NzgyNiIgb2Zmc2V0PSIuNzMzIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTQzNy44OSAtODM1LjI5KSI+PGNpcmNsZSBjeD0iNTAzLjEiIGN5PSI5MDAuMjkiIHI9IjYyLjUyIiBmaWxsPSJ1cmwoI2EpIiBzdHJva2U9InVybCgjYikiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iNC45NiIvPjxwYXRoIGQ9Ik00ODcuODkgODczLjY0YTg5LjUzIDg5LjUzIDAgMCAwLTIuNjg4LjAzMWMtMS4wNDMuMDMxLTIuNDQ1LjM2Mi00LjA2Mi45MDYgMjcuMzA5IDIwLjczNyAzNy4xMjcgNTguMTQ2IDIwLjI1IDkwLjY1Ni41NzMuMDE1IDEuMTQyLjA2MyAxLjcxOS4wNjMgMzAuODQ0IDAgNTYuNjItMjEuNDkzIDYzLjI4LTUwLjMxMi0xOS41NzItMjIuOTQzLTQ2LjExNy00MS4yOTQtNzguNS00MS4zNDR6IiBmaWxsPSJ1cmwoI2MpIiBvcGFjaXR5PSIuNzUiLz48cGF0aCBkPSJNNDgxLjE0IDg3NC41OGMtOS4wNjggMy4wNTItMjYuMzY4IDEzLjgwMi00MyAyOC4xNTYgMS4yNjMgMzQuMTk1IDI4Ljk2MSA2MS42MDcgNjMuMjUgNjIuNSAxNi44NzctMzIuNTEgNy4wNi02OS45MTktMjAuMjUtOTAuNjU2eiIgZmlsbD0iIzI4MTcwYiIgb3BhY2l0eT0iLjc1Ii8+PHBhdGggZD0iTTUwNC44ODkgODYyLjU0NmMtLjQ3Mi0uMDMyLS45MzIuMDI4LTEuMzc1LjI1LTUuNiAyLjgwMSAwIDE0IDAgMTQtMTYuODA3IDE0LjAwOS0xMy4yMzYgMzcuOTM4LTMyLjg0NCAzNy45MzgtMTAuNjg5IDAtMjEuMzIyLTEyLjI5My0zMi41MzEtMTkuODEyLS4xNDQgMS43NzMtLjI1IDMuNTY0LS4yNSA1LjM3NSAwIDI0LjUxNSAxMy41MSA0NS44NjMgMzMuNDY5IDU3LjA2MyA1LjU4My0uNzAzIDExLjE1OC0yLjExNCAxNS4zNDQtNC45MDYgMjEuOTkyLTE0LjY2MiAyNy40NTItNDIuNTU3IDM2LjQzOC01Ni4wMzEgNS41OTYtOC40MDcgMzEuODI0LTcuNjc3IDMzLjU5NC0xMS4yMiAyLjgwNC01LjYwMS01LjYwMi0xNC04LjQwNi0xNGgtMjIuNDA2Yy0xLjU2NiAwLTQuMDI1LTIuNzgtNS41OTQtMi43OGgtOC40MDZzLTMuNzI1LTUuNjUtNy4wMzEtNS44NzV6IiBmaWxsPSIjZmZmIi8+PC9nPjwvc3ZnPg==
+  introduction: 'In Apache Camel K, a Kamelet is a reusable integration component that encapsulates a specific functionality or behavior within an Apache Camel-based application. It acts as a black box, abstracting away implementation details and allowing developers to focus on high-level integration logic. Kamelets are composable and configurable, enabling easy connection and reuse to create complex integration flows. By leveraging Kamelets, developers can build integration solutions more efficiently, promoting code reuse and simplifying maintenance.'
+  tasks:
+    - description:
+        "To create a Spring application:\n1. Click on the [perspective switcher]{{highlight
+        qs-perspective-switcher}} at the top of the navigation, and select **Developer**.\n1.
+        In the navigation menu, click [Add]{{highlight qs-nav-add}}.\n1. Click the **Project**
+        dropdown menu and select **Create Project** to create a project for your Spring
+        application.\n1. In the **Name** field, enter a name for your new project. Then
+        click **Create**.\n1. On the **+Add page**, click **Import from Git** on the
+        **Git Repository** tile. \n1. In the **Git Repo URL** field, add \n  \n  ```\n
+        \   https://github.com/snowdrop/rest-http-example\n  ``` \n\n1. Click **Show
+        advanced Git options** to expose additional form fields.\n1. Add \n\n  ```\n
+        \ 2.3.4-2-redhat\n  ``` \nto the **Git reference** field.\n1. At the end of
+        the form, click **Create**. "
+      review:
+        failedTaskHelp: This task isn’t verified yet. Try the task again.
+        instructions: |-
+          The application is represented by the light grey area with the white border.  The deployment is a white circle.  Verify that the application was successfully created:
+          1. Do you see a **rest-http-example-app** application?
+          1. Do you see a **rest-http-example** deployment?
+      summary:
+        failed: Try the steps again.
+        success: Your Spring application has been deployed onto OpenShift.
+      title: Create a Spring application
+    - description:
+        "To view the build status of the Spring application:\n1. Hover over
+        the icon on the bottom left quadrant of the **rest-http-example** deployment
+        to see the build status in a tooltip.\n1. Click on the icon for quick access
+        to the build log.  \n\n    - You should be able to see the log stream of the
+        **rest-http-example-1** build on the **Build Details** page.\n    \n    - The
+        application and its dependencies will be built into a container image and pushed
+        to the OpenShift container registry."
+      review:
+        failedTaskHelp: This task isn’t verified yet. Try the task again.
+        instructions: |-
+          Verify the build is complete:
+
+          - This build may take a few minutes. When it's finished, a **Complete** badge will surface on the page header beside build name **rest-http-example**. Did this badge appear?
+      summary:
+        failed: Try the steps again.
+        success: Your build is complete.
+      title: View the build status
+    - description:
+        "To view the associated code:\n1. In the navigation menu, click [Topology]{{highlight
+        qs-nav-topology}}.\n1. The icon on the bottom right quadrant of the **rest-http-example**
+        deployment either represents the Git repository of the associated code, OR if
+        the appropriate operators are installed, it will bring up the associated code
+        in your IDE.\n          \n1. If the icon shown is Bitbucket, GitHub, GitLab
+        or generic Git, click it to navigate to the associate Git repository. Otherwise,
+        if the icon shown is CodeReady Workspaces or Eclipse Che, click it to bring
+        up the associated code in your IDE."
+      review:
+        failedTaskHelp: This task isn’t verified yet. Try the task again.
+        instructions: |-
+          Verify that you can see the code associated with your deployment:
+          - Was a new browser tab opened either to your associated Git repository or to your IDE?
+      summary:
+        failed: Try the steps again.
+        success: You viewed the code associated with **rest-http-example** deployment.
+      title: View the associated code
+    - description:
+        "To view the pod status:\n1. To view pod status in a tooltip, hover
+        over the pod donut.\n\n      - Notice that the **rest-http-example** deployment
+        has a pod donut imposed on the circle, representing the pod status (i.e. blue
+        = running).  \n      \n      - The color of the donut indicates the pod status.
+        \ "
+      review:
+        failedTaskHelp: This task isn’t verified yet. Try the task again.
+        instructions: |-
+          Verify you see the pod status:
+
+          - Do you see the number of associated pods and their statuses?
+      summary:
+        failed: Try the steps again.
+        success: Your deployment has one running pod.
+      title: View the pod status
+    - description:
+        "Since a Java builder image was used during the **Import from Git**
+        flow, a Java icon is used by default in topology.  \n\n  - This icon is determined
+        by the value of the `app.openshift.io/runtime` label.\n\n  - Let’s change the
+        icon associated with the **rest-http-example** deployment to indicate that it
+        is a Spring application.\n\n1. Click on the **rest-http-example** deployment.\n1.
+        In the side panel, click on the Actions drop-down and click the **Edit labels**
+        menu item.\n1. Click on the “x” next to the `app.openshift.io/runtime=java`
+        label to remove the entry\n1. Add an additional label: \n\n  ```\n  app.openshift.io/runtime=rh-spring-boot\n
+        \ ```\n\n1. Click on **Save** to save the labels."
+      review:
+        failedTaskHelp: This task isn’t verified yet. Try the task again.
+        instructions:
+          "Verify you have updated the icon:\n\n- Has the Spring icon replaced
+          the Java icon in the **rest-http-example** deployment? "
+      summary:
+        failed: Try the steps again.
+        success: You changed the icon associated with your deployment.
+      title: Change the deployment icon to Spring
+    - description:
+        "The external link icon on the top right quadrant of the **rest-http-example**
+        deployment represents the route URL.  \n1. Click on the external link icon to
+        open the URL and run the application in a new browser tab."
+      review:
+        failedTaskHelp: This task isn’t verified yet. Try the task again.
+        instructions: |-
+          Verify your Spring application is running:
+
+          - Is the new tab titled **HTTP Example**?
+      summary:
+        failed: Try the steps again.
+        success: Your Spring application is running.
+      title: Run the Spring application

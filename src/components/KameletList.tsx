@@ -1,4 +1,5 @@
 import {
+  ErrorBoundaryFallbackPage,
   ExtensionK8sModel,
   K8sResourceCommon,
   ListPageBody,
@@ -22,16 +23,24 @@ import {
 } from '@patternfly/react-core';
 import React, { FC } from 'react';
 import { KAMELET_GROUP_VERSION_KIND } from '../constants';
-import { CubesIcon } from '@patternfly/react-icons';
+import KameletIcon from './KameletIcon';
 
 const columns: TableColumn<K8sResourceCommon>[] = [
   {
     title: 'Name',
     id: 'name',
   },
+  {
+    title: 'Namespace',
+    id: 'namespace',
+  },
+  {
+    title: 'Created',
+    id: 'created',
+  },
 ];
 
-export const filters: RowFilter[] = [];
+const filters: RowFilter[] = [];
 
 const KameletRow: FC<RowProps<K8sResourceCommon>> = ({
   obj,
@@ -45,6 +54,12 @@ const KameletRow: FC<RowProps<K8sResourceCommon>> = ({
           name={obj.metadata!.name}
           namespace={obj.metadata!.namespace}
         />
+      </TableData>
+      <TableData id={columns[1].id} activeColumnIDs={activeColumnIDs}>
+        <ResourceLink kind="Namespace" name={obj.metadata!.namespace} />
+      </TableData>
+      <TableData id={columns[2].id} activeColumnIDs={activeColumnIDs}>
+        {obj.metadata!.creationTimestamp}
       </TableData>
     </>
   );
@@ -74,8 +89,14 @@ const KameletList: FC<KameletListProps> = ({ namespace, kind }) => {
     return <></>;
   }
   if (loaded && error) {
-    console.log('Error watching katmelets: ', error);
-    throw error;
+    return (
+      <ErrorBoundaryFallbackPage
+        errorMessage={error}
+        componentStack={''}
+        stack={''}
+        title={error}
+      />
+    );
   }
   return (
     <>
@@ -108,11 +129,15 @@ const KameletList: FC<KameletListProps> = ({ namespace, kind }) => {
           </>
         ) : (
           <EmptyState>
-            <EmptyStateIcon icon={CubesIcon} />
+            <EmptyStateIcon icon={KameletIcon} />
             <Title headingLevel="h4" size="lg">
               No Kamelets Defined
             </Title>
-            <EmptyStateBody>Some words here</EmptyStateBody>
+            <EmptyStateBody>
+              Start building powerful integration flows by leveraging Kamelets,
+              the reusable components that simplify and accelerate integration
+              development.
+            </EmptyStateBody>
             <br />
             <ListPageCreate groupVersionKind={kind}>
               Create Kamelet

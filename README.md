@@ -143,13 +143,21 @@ Additional parameters can be specified if desired. Consult the chart [values](ch
 
 ### Installing the Helm Chart
 
-Install the chart using the name of the plugin as the Helm release name into a new namespace or an existing namespace as specified by the `my-plugin-namespace` parameter and providing the location of the image within the `plugin.image` parameter by using the following command:
+Install the chart using the name of the plugin as the Helm release name into a new or existing namespace (the following example installs the plugin into the default namespace) and provide the location of the image via the `plugin.image` parameter by using the following command:
 
 ```shell
-helm upgrade -i  my-plugin charts/openshift-console-plugin -n my-plugin-namespace --create-namespace --set plugin.image=my-plugin-image-location
+helm upgrade -i console-plugin-example charts/openshift-console-plugin -n default --set plugin.image=image-registry.openshift-image-registry.svc:5000/default/console-plugin-example-git
 ```
 
 NOTE: When deploying on OpenShift 4.10, it is recommended to add the parameter `--set plugin.securityContext.enabled=false` which will omit configurations related to Pod Security.
+
+## Installing the quickstart
+
+There's a POC quickstart available under src/POC, install it with:
+
+```shell
+oc create -f src/POC/kamelet-quickstart.yaml
+```
 
 ## Linting
 

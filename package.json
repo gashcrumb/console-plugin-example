@@ -23,7 +23,7 @@
     "@cypress/webpack-preprocessor": "^5.15.5",
     "@openshift-console/dynamic-plugin-sdk": "^0.0.19",
     "@openshift-console/dynamic-plugin-sdk-webpack": "^0.0.9",
-    "@patternfly/react-core": "4.221.3",
+    "@patternfly/react-core": "4.276.8",
     "@types/js-yaml": "3.12.7",
     "@types/node": "^18.0.0",
     "@types/react": "^17.0.37",

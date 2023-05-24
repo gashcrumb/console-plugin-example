@@ -22,8 +22,8 @@ const KameletInventoryItem: FC<KameletInventoryItemProps> = ({
   const [kamelets, loaded, error] =
     useK8sWatchResource<K8sResourceCommon[]>(watchRes);
   if (loaded && error) {
-    console.log('Error watching katmelets: ', error);
-    throw error;
+    console.log('Error watching kamelets: ', error);
+    return <></>;
   }
   const title = `${kamelets.length} Kamelets`;
   return loaded ? (

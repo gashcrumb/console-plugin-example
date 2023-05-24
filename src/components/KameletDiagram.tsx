@@ -13,7 +13,6 @@ const KameletDiagram: FC<PageComponentProps<K8sResourceCommon>> = ({
 }) => {
   const [isScreenshotExpanded, setIsScreenshotExpanded] =
     useState<boolean>(true);
-  console.log('Got props: ', props);
   return (
     <>
       <ExpandableSection
