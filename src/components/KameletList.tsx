@@ -66,42 +66,55 @@ const KameletRow: FC<RowProps<K8sResourceCommon>> = ({
   );
 };
 
-type KameletListProps = {
-  match: {};
-  namespace?: string;
-  model: ExtensionK8sModel;
+type KameletTableProps = {
+  kamelets: K8sResourceCommon[];
   kind: string;
+  loaded: boolean;
+  error: any;
 };
-
-const KameletList: FC<KameletListProps> = ({ namespace, kind }) => {
-  const watchRes = {
-    kind,
-    isList: true,
-    isNamespaced: typeof namespace !== 'undefined',
-    ...(typeof namespace === 'string' && { namespace }),
-  } as any;
-  const [kamelets, loaded, error] =
-    useK8sWatchResource<K8sResourceCommon[]>(watchRes);
+const KameletTable: FC<KameletTableProps> = ({
+  kamelets,
+  kind,
+  loaded,
+  error,
+}) => {
   const [data, filteredData, onFilterChange] = useListPageFilter(
     kamelets,
     filters,
   );
-  if (!loaded) {
-    return <></>;
-  }
-  if (loaded && error) {
-    return (
-      <ErrorBoundaryFallbackPage
-        errorMessage={error}
-        componentStack={''}
-        stack={''}
-        title={error}
-      />
-    );
-  }
-  if (loaded && kamelets.length === 0) {
-    return (
-      <>
+  return (
+    <>
+      <ListPageHeader title={'Kamelets'}>
+        <ListPageCreate groupVersionKind={kind}>Create Kamelet</ListPageCreate>
+      </ListPageHeader>
+      <ListPageBody>
+        <ListPageFilter
+          data={data}
+          loaded={loaded}
+          rowFilters={filters}
+          onFilterChange={onFilterChange}
+        />
+        <VirtualizedTable<K8sResourceCommon>
+          data={filteredData}
+          unfilteredData={data}
+          loaded={loaded}
+          loadError={error}
+          columns={columns}
+          Row={KameletRow}
+        />
+      </ListPageBody>
+    </>
+  );
+};
+
+type KameletEmptyStateProps = {
+  namespace?: string;
+};
+const KameletEmptyState: FC<KameletEmptyStateProps> = ({ namespace }) => {
+  return (
+    <>
+      <ListPageHeader title={'Kamelets'} />
+      <ListPageBody>
         <EmptyState>
           <EmptyStateIcon
             icon={() => (
@@ -131,31 +144,49 @@ const KameletList: FC<KameletListProps> = ({ namespace, kind }) => {
             Create Kamelet
           </Button>
         </EmptyState>
-      </>
-    );
-  }
-  return (
-    <>
-      <ListPageHeader title={'Kamelets'}>
-        <ListPageCreate groupVersionKind={kind}>Create Kamelet</ListPageCreate>
-      </ListPageHeader>
-      <ListPageBody>
-        <ListPageFilter
-          data={data}
-          loaded={loaded}
-          rowFilters={filters}
-          onFilterChange={onFilterChange}
-        />
-        <VirtualizedTable<K8sResourceCommon>
-          data={filteredData}
-          unfilteredData={data}
-          loaded={loaded}
-          loadError={error}
-          columns={columns}
-          Row={KameletRow}
-        />
       </ListPageBody>
     </>
+  );
+};
+
+type KameletListProps = {
+  match: {};
+  namespace?: string;
+  model: ExtensionK8sModel;
+  kind: string;
+};
+const KameletList: FC<KameletListProps> = ({ namespace, kind }) => {
+  const watchRes = {
+    kind,
+    isList: true,
+    isNamespaced: typeof namespace !== 'undefined',
+    ...(typeof namespace === 'string' && { namespace }),
+  } as any;
+  const [kamelets, loaded, error] =
+    useK8sWatchResource<K8sResourceCommon[]>(watchRes);
+  if (!loaded) {
+    return <></>;
+  }
+  if (loaded && error) {
+    return (
+      <ErrorBoundaryFallbackPage
+        errorMessage={error}
+        componentStack={''}
+        stack={''}
+        title={error}
+      />
+    );
+  }
+  if (loaded && kamelets.length === 0) {
+    return <KameletEmptyState namespace={namespace} />;
+  }
+  return (
+    <KameletTable
+      kamelets={kamelets}
+      kind={kind}
+      loaded={loaded}
+      error={error}
+    />
   );
 };
 
