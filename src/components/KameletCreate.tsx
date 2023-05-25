@@ -8,12 +8,10 @@ import React, { FC, useState } from 'react';
 import { KAMELET_GROUP_VERSION_KIND, KAMELET_KIND } from '../constants';
 import { safeLoad } from 'js-yaml';
 import { ExpandableSection } from '@patternfly/react-core';
-import { EmptyEditor } from '../POC/EmptyEditor';
 import './KameletCreate.css';
 
 const KameletCreate: FC<CreateResourceComponentProps> = ({ ...props }) => {
-  const [isScreenshotExpanded, setIsScreenshotExpanded] =
-    useState<boolean>(true);
+  const [isKaotoExpanded, setIsKaotoExpanded] = useState<boolean>(true);
   const [model, inFlight] = useK8sModel(KAMELET_GROUP_VERSION_KIND);
   if (inFlight) {
     return <></>;
@@ -21,16 +19,19 @@ const KameletCreate: FC<CreateResourceComponentProps> = ({ ...props }) => {
   return (
     <>
       <ExpandableSection
-        isExpanded={isScreenshotExpanded}
-        onToggle={setIsScreenshotExpanded}
-        toggleText={'Screenshot'}
+        isExpanded={isKaotoExpanded}
+        onToggle={setIsKaotoExpanded}
+        toggleText={'Kaoto'}
       >
-        <EmptyEditor />
+        <iframe
+          style={{ width: '100%', height: '818px', marginTop: '-50px' }}
+          src={'https://kaoto-default.apps-crc.testing'}
+        />
       </ExpandableSection>
       <ExpandableSection toggleText={'Text Editor'}>
         <React.Suspense fallback={<>Please wait...</>}>
-            <ResourceYAMLEditor
-              initialResource={`        
+          <ResourceYAMLEditor
+            initialResource={`        
 apiVersion: camel.apache.org/v1alpha1
 kind: Kamelet
 metadata:
@@ -62,19 +63,19 @@ spec:
         - to: 'kamelet:sink'
       uri: 'timer:tick'
 `}
-              header={'Make a Kamelet'}
-              onSave={async (content: string) => {
-                const data = safeLoad(content) as any;
-                await k8sCreate({
-                  model,
-                  data: data as object,
-                });
-                //TODO - figure out router access
-                window.location.href = `/ns/${
-                  data.metadata!.namespace
-                }/${KAMELET_KIND}/${data.metadata!.name}`;
-              }}
-            />
+            header={'Make a Kamelet'}
+            onSave={async (content: string) => {
+              const data = safeLoad(content) as any;
+              await k8sCreate({
+                model,
+                data: data as object,
+              });
+              //TODO - figure out router access
+              window.location.href = `/ns/${
+                data.metadata!.namespace
+              }/${KAMELET_KIND}/${data.metadata!.name}`;
+            }}
+          />
         </React.Suspense>
       </ExpandableSection>
       <ExpandableSection toggleText={'Page Properties'}>
