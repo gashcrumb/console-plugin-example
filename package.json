@@ -68,9 +68,10 @@
     "description": "",
     "exposedModules": {
       "KameletInventoryItem": "./components/KameletInventoryItem",
-      "KameletCreate": "./components/KameletCreate",
-      "KameletDiagram": "./components/KameletDiagram",
-      "KameletList": "./components/KameletList",
+      "KameletCreatePage": "./components/KameletCreatePage",
+      "KameletDescriptionTab": "./components/KameletDescriptionTab",
+      "KameletDiagramTab": "./components/KameletDiagramTab",
+      "KameletListPage": "./components/KameletListPage",
       "KameletTemplates": "./templates/KameletTemplates"
     },
     "dependencies": {

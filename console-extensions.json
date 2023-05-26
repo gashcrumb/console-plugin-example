@@ -29,10 +29,25 @@
         "kind": "Kamelet"
       },
       "page": {
+        "name": "Description",
+        "href": "/description"
+      },
+      "component": { "$codeRef": "KameletDescriptionTab" }
+    }
+  },
+  {
+    "type": "console.tab/horizontalNav",
+    "properties": {
+      "model": {
+        "group": "camel.apache.org",
+        "version": "v1alpha1",
+        "kind": "Kamelet"
+      },
+      "page": {
         "name": "Diagram",
         "href": "/diagram"
       },
-      "component": { "$codeRef": "KameletDiagram" }
+      "component": { "$codeRef": "KameletDiagramTab" }
     }
   },
   {
@@ -58,7 +73,7 @@
         "kind": "Kamelet"
       },
       "component": {
-        "$codeRef": "KameletCreate"
+        "$codeRef": "KameletCreatePage"
       }
     }
   },
@@ -71,7 +86,7 @@
         "kind": "Kamelet"
       },
       "component": {
-        "$codeRef": "KameletList"
+        "$codeRef": "KameletListPage"
       }
     }
   },

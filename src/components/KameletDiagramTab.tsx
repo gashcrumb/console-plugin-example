@@ -6,7 +6,7 @@ import {
 import React, { FC } from 'react';
 import FullHeight from './FullHeight';
 
-const KameletDiagram: FC<PageComponentProps<K8sResourceCommon>> = ({}) => {
+const KameletDiagramTab: FC<PageComponentProps<K8sResourceCommon>> = ({}) => {
   return (
     <FullHeight>
       <iframe
@@ -17,4 +17,4 @@ const KameletDiagram: FC<PageComponentProps<K8sResourceCommon>> = ({}) => {
   );
 };
 
-export default KameletDiagram;
+export default KameletDiagramTab;

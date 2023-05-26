@@ -9,7 +9,7 @@ import { KAMELET_GROUP_VERSION_KIND, KAMELET_KIND } from '../constants';
 import { safeLoad } from 'js-yaml';
 import { Flex, Radio } from '@patternfly/react-core';
 
-import './KameletCreate.css';
+import './KameletCreatePage.css';
 import FullHeight from './FullHeight';
 
 export enum EditorType {
@@ -17,7 +17,7 @@ export enum EditorType {
   YAML = 'yaml',
 }
 
-const KameletCreate: FC<CreateResourceComponentProps> = ({ ...props }) => {
+const KameletCreatePage: FC<CreateResourceComponentProps> = ({ ...props }) => {
   const [editorType, setEditorType] = useState<EditorType>(EditorType.Kaoto);
   const [model, inFlight] = useK8sModel(KAMELET_GROUP_VERSION_KIND);
   if (inFlight) {
@@ -42,7 +42,7 @@ const KameletCreate: FC<CreateResourceComponentProps> = ({ ...props }) => {
             isChecked={editorType === EditorType.Kaoto}
             name={EditorType.Kaoto}
             onChange={() => setEditorType(EditorType.Kaoto)}
-            label={'Kaoto'}
+            label={'Diagram view'}
             id={EditorType.Kaoto}
             value={EditorType.Kaoto}
           />
@@ -130,4 +130,4 @@ spec:
   );
 };
 
-export default KameletCreate;
+export default KameletCreatePage;
