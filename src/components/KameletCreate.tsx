@@ -4,34 +4,77 @@ import {
   useK8sModel,
   k8sCreate,
 } from '@openshift-console/dynamic-plugin-sdk';
-import React, { FC, useState } from 'react';
+import React, { FC, Suspense, useState } from 'react';
 import { KAMELET_GROUP_VERSION_KIND, KAMELET_KIND } from '../constants';
 import { safeLoad } from 'js-yaml';
-import { ExpandableSection } from '@patternfly/react-core';
+import { Flex, Radio } from '@patternfly/react-core';
+
 import './KameletCreate.css';
+import FullHeight from './FullHeight';
+
+export enum EditorType {
+  Kaoto = 'kaoto',
+  YAML = 'yaml',
+}
 
 const KameletCreate: FC<CreateResourceComponentProps> = ({ ...props }) => {
-  const [isKaotoExpanded, setIsKaotoExpanded] = useState<boolean>(true);
+  const [editorType, setEditorType] = useState<EditorType>(EditorType.Kaoto);
   const [model, inFlight] = useK8sModel(KAMELET_GROUP_VERSION_KIND);
   if (inFlight) {
     return <></>;
   }
   return (
     <>
-      <ExpandableSection
-        isExpanded={isKaotoExpanded}
-        onToggle={setIsKaotoExpanded}
-        toggleText={'Kaoto'}
-      >
-        <iframe
-          style={{ width: '100%', height: '818px', marginTop: '-50px' }}
-          src={'https://kaoto-default.apps-crc.testing'}
-        />
-      </ExpandableSection>
-      <ExpandableSection toggleText={'Text Editor'}>
-        <React.Suspense fallback={<>Please wait...</>}>
-          <ResourceYAMLEditor
-            initialResource={`        
+      <div className="co-synced-editor__editor-toggle">
+        <Flex
+          spaceItems={{ default: 'spaceItemsMd' }}
+          alignItems={{ default: 'alignItemsCenter' }}
+          role="radiogroup"
+          aria-labelledby="radio-group-title-editor-toggle"
+        >
+          <label
+            className="co-synced-editor__editor-toggle-label"
+            id="radio-group-title-editor-toggle"
+          >
+            Configure via:
+          </label>
+          <Radio
+            isChecked={editorType === EditorType.Kaoto}
+            name={EditorType.Kaoto}
+            onChange={() => setEditorType(EditorType.Kaoto)}
+            label={'Kaoto'}
+            id={EditorType.Kaoto}
+            value={EditorType.Kaoto}
+          />
+          <Radio
+            isChecked={editorType === EditorType.YAML}
+            name={EditorType.YAML}
+            onChange={() => setEditorType(EditorType.YAML)}
+            label={'YAML view'}
+            id={EditorType.YAML}
+            value={EditorType.YAML}
+            data-test={`${EditorType.YAML}-view-input`}
+          />
+        </Flex>
+      </div>
+      <FullHeight>
+        {(() => {
+          switch (editorType) {
+            case EditorType.Kaoto:
+              return (
+                <iframe
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                  }}
+                  src={'https://kaoto-default.apps-crc.testing'}
+                />
+              );
+            case EditorType.YAML:
+              return (
+                <Suspense fallback={<>Please wait...</>}>
+                  <ResourceYAMLEditor
+                    initialResource={`        
 apiVersion: camel.apache.org/v1alpha1
 kind: Kamelet
 metadata:
@@ -63,27 +106,26 @@ spec:
         - to: 'kamelet:sink'
       uri: 'timer:tick'
 `}
-            header={'Make a Kamelet'}
-            onSave={async (content: string) => {
-              const data = safeLoad(content) as any;
-              await k8sCreate({
-                model,
-                data: data as object,
-              });
-              //TODO - figure out router access
-              window.location.href = `/ns/${
-                data.metadata!.namespace
-              }/${KAMELET_KIND}/${data.metadata!.name}`;
-            }}
-          />
-        </React.Suspense>
-      </ExpandableSection>
-      <ExpandableSection toggleText={'Page Properties'}>
-        <pre>{JSON.stringify(props, undefined, 2)}</pre>
-      </ExpandableSection>
-      <ExpandableSection toggleText={'Object model'}>
-        <pre>{JSON.stringify(model, undefined, 2)}</pre>
-      </ExpandableSection>
+                    header={'Make a Kamelet'}
+                    onSave={async (content: string) => {
+                      const data = safeLoad(content) as any;
+                      await k8sCreate({
+                        model,
+                        data: data as object,
+                      });
+                      //TODO - figure out router access
+                      window.location.href = `/ns/${
+                        data.metadata!.namespace
+                      }/${KAMELET_KIND}/${data.metadata!.name}`;
+                    }}
+                  />
+                </Suspense>
+              );
+            default:
+              return <></>;
+          }
+        })()}
+      </FullHeight>
     </>
   );
 };
