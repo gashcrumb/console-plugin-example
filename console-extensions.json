@@ -17,6 +17,7 @@
       "id": "createKamelet",
       "label": "Create Kamelet",
       "description": "Create reusable integration patterns effortlessly with Kamelets, simplifying the development of powerful integration solutions.",
+      "icon": { "$codeRef": "icons.camelIconElement" },
       "href": "/ns/:namespace/camel.apache.org~v1alpha1~Kamelet/~new"
     }
   },

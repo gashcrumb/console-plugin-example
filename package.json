@@ -67,6 +67,7 @@
     "displayName": "Console Plugin Example",
     "description": "",
     "exposedModules": {
+      "icons": "./components/icons.tsx",
       "KameletInventoryItem": "./components/KameletInventoryItem",
       "KameletCreatePage": "./components/KameletCreatePage",
       "KameletDescriptionTab": "./components/KameletDescriptionTab",
